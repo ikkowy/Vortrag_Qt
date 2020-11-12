@@ -8,3 +8,4 @@ clean:
 	rm -f *.nav
 	rm -f *.out
 	rm -f *.snm
+	rm -f *.vrb
