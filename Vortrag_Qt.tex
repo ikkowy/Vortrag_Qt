@@ -1,0 +1,160 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usetheme{nutria}
+
+\usepackage[ngerman]{babel}
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmonofont{Inconsolata}
+\setmathfont{TeX Gyre Pagella Math}
+
+\usepackage{pifont}
+
+\usepackage{listings}
+
+\lstset{
+basicstyle=\ttfamily
+}
+
+\usepackage{mdframed}
+\usepackage{graphicx}
+
+%-------------------------------------------------------------------------------
+
+\title{Anwendungsentwicklung in C++ unter Verwendung des Qt Frameworks}
+\author{Lan Nguyen \and Vincent Westenberg}
+\institute{Berufsakademie Sachsen -- Staatliche Studienakademie Leipzig}
+\date{12. November 2020}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+%-------------------------------------------------------------------------------
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Was ist C++?}
+\begin{itemize}
+\item eine zu C kompatible Programmiersprache
+\item solider Standard (C++ 98/11/14/17/20)
+\item[\ding{237}] C-Programme allgemein problemlos mit C++ Compiler kompilierbar
+\item performant, systemnah, objektorientiert, funktional
+\item[\ding{237}] inline-Assembler, Erben von mehreren Klassen, Überladen von Operatoren, Lambda-Ausdrücke
+\item kein Garbage-Collector (echtzeitfähig)
+\item[\ding{237}] manuelle Speicherverwaltung, Referenzzählung
+\item[\ding{237}] Programmierung von Mikrocontrollern/Echtzeitsystemen
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[fragile]{Beispiel \texttt{hello.cpp}}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+int main () {
+    std::cout << "Hello world!" << std::endl;
+    return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[fragile]{Beispiel \texttt{sort.cpp}}
+\scriptsize
+\vspace*{-5pt}
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <algorithm>
+#include <cstdlib>
+#include <vector>
+
+void dump (const std::vector<int> & numbers) {
+    for (auto & n : numbers) {
+	std::cout << n << (&n == &numbers.back() ? '\n' : ' ');
+    }
+}
+
+int main () {
+    std::vector<int> numbers;
+    srand(time(NULL));
+    for (int i=0; i < 10; i++) { numbers.push_back(rand() % 100); }
+    dump(numbers);
+    std::sort(numbers.begin(), numbers.end());
+    dump(numbers);
+    return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[fragile]{Was ist Qt?}
+\begin{flushright}
+\includegraphics[scale=0.1]{logo}
+\end{flushright}
+\begin{itemize}
+\item umfangreiche C++ Bibliothek
+\item plattformübergreifend
+\item GUI-Toolkit
+\item Open Source
+\item Anbindung an diverse Programmiersprachen
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}{Geschichte und Entwicklung}
+\begin{itemize}
+\item 1991: entwickelt von Haavard Nord und Eirik Chambe-Eng
+\item 1993: Gründung von Quasar Technologies (später Trolltech)
+\item 1996: Qt 1.0
+\item 2008: von Nokia aufgekauft
+\item 2011: unter freie Lizenz gestellt (duales Lizenzmodell)
+\item heute: Qt 5.15
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}{Funktionsumfang}
+\begin{itemize}
+\item Unterteilung in Module
+\item[\ding{237}] Core, GUI, Quick, Multimedia, Network, SQL, \ldots
+\item Anbindung an Python
+\item Qt Quick nutzt QML und JavaScript
+\item Datenbankzugriff, XML, JSON
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}{Signals und Slots}
+\begin{itemize}
+\item Qt erweitert die Programmiersprache C++ um ein Signal-Slot-System
+\item[\ding{237}] MOC (Meta Object Compiler)
+\item[\ding{237}] Signals: Ereignisse, zum Beispiel Klick auf ein Objekt
+\item[\ding{237}] Slots: definierte Aktionen für das Eintreten eines Signals
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}{Beispiel Julia-Mengen}
+\begin{center}
+{\Large \(f : \mathbb{C} \rightarrow \mathbb{C}, \quad z \mapsto z^2+c \quad (c \in \mathbb{C})\)}
+\end{center}
+
+\[ z^2 ~=~ (a+bi)^2 ~=~ (a+bi)(a+bi) ~=~ \underbrace{a^2 - b^2}_\Re + \underbrace{2abi}_\Im \]
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+\end{document}
+%-------------------------------------------------------------------------------
